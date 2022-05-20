@@ -12,6 +12,7 @@
 </details>
 
 <hr>
+
 ## 1. Project scope
 
 ### a. Goal
