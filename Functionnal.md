@@ -13,6 +13,7 @@
     - [a. Hardware](#a-hardware)
     - [b. Software](#b-software)
       - [1. AI Training side](#1-ai-training-side)
+      - [2. Live side](#2-live-side)
 </details>
 
 <hr>
@@ -64,7 +65,7 @@ Both use the technology 'Jupiter Notebook' and Python3. Also they both allow She
 
 ***
 
-For Neural network software there is currently 2 technologies that are currently viable for a Neural Network.
+For Neural network software there is currently 2 technologies that are currently viable for our Neural Network.
 
 | [TensorFlow](https://www.tensorflow.org/)  | [PyTorch](https://pytorch.org/) | 
 | :----------------------------------------: | :-----------------------------: |
@@ -72,3 +73,18 @@ For Neural network software there is currently 2 technologies that are currently
 TensorFlow is made by Google while PyTorch is made by Facebook. 
 
 Both are different but end up in the same result.
+
+  #### 2. Live side
+
+The live side of the project will be made on a small device that will not be connected to internet.
+It will be used to detect the language spoken by students and alert them with a sound.
+
+Not as the training side, the live devices isn't as much energy consuming as the training.
+So it required a lot less power to be able to run the live side.
+
+That way we can see 2 main card comming out for hosting the live app.
+
+| [Raspberry](https://www.raspberrypi.com/products/)  | [Arduino](https://www.arduino.cc/) | 
+| :-------------------------------------------------: | :--------------------------------: |
+
+Raspberry is designed to host Python applications when Arduino is designed to host C/C++ applications.
