@@ -65,6 +65,12 @@ It's also well supported by our Neural Network library.
 We have a choice between using Tensorflow or Pytorch.
 We decided to use Tensorflow because the people in the team are more used to Tensorflow.
 
+We decided to use a CNN ( Convolutional Neural Network ) to detect the language.
+Because CNN are more reliable than a simple RNN ( Recurrent Neural Network ) or a simple speech to text.
+
+So we are just going to use a CNN of the spectrogram of the sound to detect the language.
+
+
 
 ### c. Convention of typing
 
@@ -76,7 +82,55 @@ We want to keep things easay so Snake case will be used everywhere.
 
 In order to train the AI, we need to have a dataset.
 We don't have enough ressources and divercity in order to create our own dataset.
-Mozilla 
+Mozilla give us the nessesary tools to create our own Dataset.
+
+Mozilla have a crowd-sourced dataset that we can use. 
+It's called the [Speech dataset](https://www.mozilla.org/en-US/speech-data/dataset/).
+
 
 ### b. Converting dataset
+
+A CNN can't be used on a sound directly.
+We need to convert the sound to a spectrogram.
+
+In fact we need to convert each sound of the dataset to a spectrogram.
+
+Here is a small example on how to convert a sound to a spectrogram.
+```PYTHON
+def spectrogram(sound):
+    spectrogram = melspectrogram(sound)
+    spectrogram = librosa.power_to_db(spectrogram)
+    return spectrogram
+
+
+for files in folder:
+    sound = AudioSegment.from_file(files)
+    sound.export("files.wav", format="wav")
+    sound = AudioSegment.from_file("files.wav")
+    sound_spectrogram = spectrogram(sound)
+    sound_spectrogram.export("files.png", format="png")
+```
+
 ### c. Retrieve Live data
+
+For the live version of the project, we need to be able to retrieve the sound from the microphone.
+The record will be saved temporarly in a file.
+
+We will use our generated model to predict the language of the sound.
+And finnaly we will delete the file. ( Security and Data protection )
+
+```PYTHON	
+def retrieve_live_data():
+    sound = AudioSegment.from_microphone(channels=1, samplerate=16000, duration=5)
+    sound.export("files.wav", format="wav")
+    sound = AudioSegment.from_file("files.wav")
+    sound_spectrogram = spectrogram(sound)
+    sound_spectrogram.export("files.png", format="png")
+    sound_spectrogram = Image.open("files.png")
+    sound_spectrogram = np.array(sound_spectrogram)
+    sound_spectrogram = sound_spectrogram.reshape(1, 1, sound_spectrogram.shape[0], sound_spectrogram.shape[1])
+    prediction = model.predict(sound_spectrogram)
+    os.remove("files.wav")
+    os.remove("files.png")
+    return prediction
+```
