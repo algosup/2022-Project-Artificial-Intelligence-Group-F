@@ -129,3 +129,7 @@ cython_debug/
 # Datasets used to train the A.I
 Data/*
 *.mp3
+
+# model build 
+*.h5
+*.tflite
