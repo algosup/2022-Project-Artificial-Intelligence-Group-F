@@ -12,6 +12,6 @@ pydub
 sklearn
 librosa 
 keras
-shutil
-sounfile
+pytest-shutil
+soundfile
 imageio
