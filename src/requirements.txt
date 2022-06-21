@@ -1,0 +1,17 @@
+#how to install the modules
+#pip install -r requirements.txt
+
+#how to check if the modules is installed
+#pip freeze
+
+tensorflow == 2.8.0
+matplotlib
+numpy
+pandas
+pydub
+sklearn
+librosa 
+keras
+pytest-shutil
+soundfile
+imageio
